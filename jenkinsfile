@@ -1,0 +1,19 @@
+pipeline{
+    agent any
+
+   stages{
+      stage('Bulid app') {
+     steps {
+         checkout scmGit(branches:[[name: '/main']], extension:[],userRemoteConfigs:[[url:'https://github.com/SwapnaliShah/hello-world-java-docker.git']])
+     }
+}
+stage('Bulid docker image'){
+    steps{
+         script{
+              bat 'docker bulid -t jenkinsjavaapp .'
+     }
+}
+}
+}
+}
+
